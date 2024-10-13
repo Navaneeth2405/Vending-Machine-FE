@@ -1,0 +1,31 @@
+<div class="purchase-container">
+    <h2>Review Your Cart</h2>
+  
+    <div *ngIf="cart.length === 0" class="empty-cart-message">
+      <p>Your cart is empty.</p>
+      <button class="custom-button" (click)="goToHome()">Go back to Home</button>
+    </div>
+  
+    <div *ngIf="cart.length > 0" class="cart-items">
+      <div *ngFor="let item of cart" class="cart-item">
+        <img [src]="item.imageUrl" [alt]="item.name" class="item-image">
+        <div class="item-details">
+          <p>{{ item.name }} - Quantity: {{ item.quantity }} - Price per item: R{{ item.price }}</p>
+        </div>
+      </div>
+  
+      <h3>Total Amount: R{{ totalAmount }}</h3>
+    </div>
+  
+    <div *ngIf="cart.length > 0 && !message" class="payment-section">
+      <h3>Make Payment</h3>
+      <input type="number" [(ngModel)]="payment" placeholder="Enter amount" />
+      <button class="custom-button" (click)="makePayment()">Pay</button>
+    </div>
+  
+    <div *ngIf="message" class="message">
+      <p>{{ message }}</p>
+      <button class="custom-button" (click)="goToHome()">Go back to Home</button>
+    </div>
+  </div>
+  

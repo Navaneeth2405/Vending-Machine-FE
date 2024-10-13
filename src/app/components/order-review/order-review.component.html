@@ -1,0 +1,22 @@
+<div class="order-review-container">
+    <div *ngIf="cart.length === 0" class="empty-cart-message">
+      <p>Your cart is currently empty. Please add items from the vending machine.</p>
+      <button class="custom-button" (click)="goToItemList()">Go to Item List</button>
+    </div>
+  
+    <div *ngIf="cart.length > 0" class="cart-items">
+      <h2>Review Your Order</h2>
+  
+      <div *ngFor="let item of cart" class="cart-item">
+        <img [src]="item.imageUrl" [alt]="item.name" class="item-image">
+        <div class="item-details">
+          <h4>{{ item.name }}</h4>
+          <p>Price: R{{ item.price }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+        </div>
+      </div>
+  
+      <button class="proceed-button" (click)="proceedToPayment()">Proceed to Payment</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,19 @@
+<div class="item-list-container">
+    <div *ngIf="items.length === 0" class="no-items-message">
+      <p>No items available in the vending machine.</p>
+    </div>
+  
+    <div *ngFor="let item of items" class="item-card">
+      <img [src]="item.imageUrl" [alt]="item.name" class="item-image">
+      <h3>{{ item.name }}</h3>
+      <p>Price: R{{ item.price }}</p>
+      <p>Available Quantity: {{ item.quantity }}</p>
+      <label for="quantity-{{ item.name }}">Quantity:</label>
+      <input type="number" id="quantity-{{ item.name }}" [(ngModel)]="quantities[item.name]" min="1" />
+      <button class="custom-button" (click)="addToCart(item)">Add to Cart</button>
+    </div>
+  
+    <div class="order-review-button-container">
+      <button class="order-review-button" (click)="goToOrderReview()">Go to Order Review</button>
+    </div>
+  </div>
